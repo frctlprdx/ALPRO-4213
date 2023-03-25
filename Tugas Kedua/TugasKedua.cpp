@@ -4,12 +4,18 @@ using namespace std;
 bool isEven(int x);
 bool isOdd(int x);
 bool isFactor(int x, int y);
+int maxArray(int x[100], int N);
+int minArray(int x[100], int N);
+int compareMax(int x, int y);
+int compareMin(int x, int y);
+int sumEven(int x[100],int N);
+int sumOdd(int x[100],int N);
 void Swap(int x, int y);
 
 int main() {
     bool jawaban = true;
     string pilihan;
-    int x,y ;
+    int x,y,N,i,A[100],hasil;
     
   while (jawaban == true)
   {
@@ -32,6 +38,7 @@ int main() {
         cin >> x;
         bool answer = isEven(x);
         cout << answer << "\n";
+        jawaban = true;
     }
 
     else if (pilihan == "2")
@@ -40,6 +47,7 @@ int main() {
         cin >> x;
         bool answer = isOdd(x);
         cout << answer << "\n";
+        jawaban = true;
     }
 
     else if (pilihan == "3")
@@ -50,36 +58,83 @@ int main() {
         cin >> y;
         bool answer = isFactor(x,y);
         cout << answer << "\n";
+        jawaban = true;
     }
 
     else if (pilihan == "4")
     {
-        
+        cout << "Masukkan panjang array : ";
+        cin >> N;
+        for ( i = 0; i < N; i++)
+        {
+            cout << "Masukkan angka : ";
+            cin >> A[i];
+        }
+        hasil = maxArray(A, N);
+        cout << "Nomor paling besar adalah : " << hasil <<  endl;
     }
 
     else if (pilihan == "5")
     {
-        
+        cout << "Masukkan panjang array : ";
+        cin >> N;
+        for ( i = 0; i < N; i++)
+        {
+            cout << "Masukkan angka : ";
+            cin >> A[i];
+        }
+        hasil = minArray(A,N);
+        cout << "Nomor paling kecil adalah : " << hasil <<  endl;
     }
 
     else if (pilihan == "6")
     {
-        
+        cout << "Masukkan angka X : ";
+        cin >> x;
+        cout << "Masukkan angka Y : ";
+        cin >> y;
+        int hasil = compareMax(x,y);
+        cout << "Lebih besar " << hasil << endl;
+        jawaban = true;
     }
 
     else if (pilihan == "7")
     {
-        
+        cout << "Masukkan angka X : ";
+        cin >> x;
+        cout << "Masukkan angka Y : ";
+        cin >> y;
+        int hasil = compareMin(x,y);
+        cout << "Lebih kecil " << hasil << endl;
+        jawaban = true;
     }
 
     else if (pilihan == "8")
     {
-        
+        cout << "Masukkan panjang array : ";
+        cin >> N;
+        for ( i = 0; i < N; i++)
+        {
+            cout << "Masukkan angka : ";
+            cin >> A[i];
+        }
+        hasil = sumEven(A,N);
+        cout << "Hasilnya adalah : "<< hasil << endl;
+        jawaban = true;
     }
 
     else if (pilihan == "9")
     {
-        
+        cout << "Masukkan panjang array : ";
+        cin >> N;
+        for ( i = 0; i < N; i++)
+        {
+            cout << "Masukkan angka : ";
+            cin >> A[i];
+        }
+        hasil = sumOdd(A,N);
+        cout << "Hasilnya adalah : "<< hasil << endl;
+        jawaban = true;
     }
 
     else if (pilihan == "10")
@@ -89,6 +144,7 @@ int main() {
         cout << "Masukkan nomor Kedua (Y): ";
         cin >> y;
         Swap(x,y);
+        jawaban = true;
     } 
     
     else {
@@ -129,6 +185,54 @@ bool isFactor(int x, int y){
     
 }
 
+int maxArray(int x[100], int N){
+    int i, total;
+    total = 0;
+    for (i = 0; i < N ; i++)
+    {
+        if (x[i]>total){
+            total = x[i];
+        }
+    }
+    return total;
+    
+}
+
+int minArray (int x[100], int N){
+    int i, total;
+    total = x[0];
+    for (i = 1; i < N; i++)
+    {
+        if (total > x[i])
+        {
+            total = x[i];
+        }
+    }
+    return total;
+}
+
+int compareMax(int x, int y){
+    if (x > y)
+    {
+        return x;
+    }
+    else {
+        return y;
+    }
+    
+}
+
+int compareMin(int x, int y){
+    if (x < y)
+    {
+        return x;
+    }
+    else {
+        return y;
+    }
+    
+}
+
 void Swap (int x, int y){
     int temp;
     temp = x;
@@ -136,4 +240,33 @@ void Swap (int x, int y){
     y = temp;
     cout << "X menjadi : "<< x << "\n";
     cout << "Y menjadi : "<< y << "\n";
+}
+
+int sumEven(int x[100], int N){
+    int i, total;
+    total = 0;
+    for (i = 0; i < N; i++)
+    {
+        if (x[i]%2==0)
+        {
+            total += x[i];
+        }
+        
+    }
+    cout << endl;
+    return total;
+}
+int sumOdd(int x[100], int N){
+    int i, total;
+    total = 0;
+    for (i = 0; i < N; i++)
+    {
+        if (x[i]%2==1)
+        {
+            total += x[i];
+        }
+        
+    }
+    cout << endl;
+    return total;
 }
